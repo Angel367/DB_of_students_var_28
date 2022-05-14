@@ -18,7 +18,8 @@ public:
 	void loadDataFromFile() {
 		string line;
 		int count = 0;
-		std::ifstream inFile(FileName); // ÓÍ˚‚‡ÂÏ Ù‡ÈÎ ‰Îˇ ˜ÚÂÌËˇ
+		std::ifstream inFile; // ÓÍ˚‚‡ÂÏ Ù‡ÈÎ ‰Îˇ ˜ÚÂÌËˇ
+        inFile.open(FileName);
 		if (inFile.is_open())
 		{
 			bool isRecord = false;
@@ -66,7 +67,7 @@ public:
 						if (strcmp("group", valueName.c_str()) == 0)
 							sn->group = value;
 						if (strcmp("record—ardNumber", valueName.c_str()) == 0)
-							sn->record—ardNumber = value;
+							sn->recordCardNumber = value;
 						if (strcmp("birthDateString", valueName.c_str()) == 0)
 							sn->birthDateString = value;
 						// ExamsRecords
@@ -153,7 +154,7 @@ public:
 		tNode->faculty = st->faculty;
 		tNode->department = st->department;
 		tNode->group = st->group;
-		tNode->record—ardNumber = st->record—ardNumber;
+		tNode->recordCardNumber = st->recordCardNumber;
 		tNode->sex = st->sex;
 		tNode->startYear = st->startYear;
 		tNode->birthDateString = st->birthDateString;
@@ -207,10 +208,10 @@ public:
 		return DataBase.size();
 	};
 
-	int getSameRecord—ardNumber(string inString) {
+	int getSameRecordCardNumber(string inString) {
 		int count = 0;
 		for (auto item : DataBase) {
-			if (item.record—ardNumber == inString)
+			if (item.recordCardNumber == inString)
 				count++;
 		}
 		return count;
@@ -413,5 +414,3 @@ public:
 
 
 };
-
-

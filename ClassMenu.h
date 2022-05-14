@@ -143,8 +143,8 @@ public:
     //    8 Ч серый
     //    9 Ч свело - синий
     //    A Ч светло - зеленый
-    //    B Ч светло - голубой
-    //    — Ч светло - красный
+    //    B Ч светло-голубой
+    //    — Ч светло-красный
     //    E Ч светло - желтый
     //    F Ч €рко - белый
     //system("Color 15");
@@ -152,7 +152,7 @@ public:
     void run() {
         char ch = ' ';
         draw();
-        while (ch != 13) {
+        while (ch != 'S') {     // »«ћ≈Ќ≈Ќќ
             Sleep(50);
             ch = _getch();
             //cout << endl << ch <<endl;
@@ -167,7 +167,7 @@ public:
         }
     }
     //friend class ClassEdit;
-    friend  void drawLineUP(int size);
-    friend  void drawLineDown(int size);
+    friend void drawLineUP(int size);
+    friend void drawLineDown(int size);
 };
 

@@ -17,7 +17,7 @@ struct StudentNode
 	string faculty;
 	string department;
 	string group;
-	string recordСardNumber;
+	string recordCardNumber;
 	string birthDateString;
 	bool sex; // true - мальчик
 			  // false - девочка
@@ -58,7 +58,7 @@ public:
 		sn->faculty = "10.05.04 Информационно-аналитические системы безопасности";
 		sn->department = "Институт комплексной безопасности и специального приборостроения";
 		sn->group = "БИСО-01-21";
-		sn->recordСardNumber = "20Б0857";
+		sn->recordCardNumber = "20Б0857";
 		sn->sex = true;
 		sn->startYear = 2021;
 		sn->birthDateString = "27.12.1984";
@@ -89,7 +89,7 @@ public:
 		stringList.insert(stringList.begin(), sb.setParam("faculty", sn->faculty));
 		stringList.insert(stringList.begin(), sb.setParam("department", sn->department));
 		stringList.insert(stringList.begin(), sb.setParam("group", sn->group));
-		stringList.insert(stringList.begin(), sb.setParam("recordСardNumber", sn->recordСardNumber));
+		stringList.insert(stringList.begin(), sb.setParam("recordCardNumber", sn->recordCardNumber));
 		int intSex = 1;
 		if (sn->sex)
 			intSex = 1;
@@ -168,7 +168,7 @@ public:
 			if (sn->sex) { sexString = "мальчик:("; }
 			else { sexString = "девочка;)"; }
 			studDataMenu->addTitleItem("пол: " + sexString + " дата рождения: " + sn->birthDateString + " год поступления:" + std::to_string(sn->startYear));
-			studDataMenu->addTitleItem("Номер зачетной книжки: " + sn->recordСardNumber + " Группа: " + sn->group);
+			studDataMenu->addTitleItem("Номер зачетной книжки: " + sn->recordCardNumber + " Группа: " + sn->group);
 			studDataMenu->addTitleItem("Институт: " + sn->faculty);
 			studDataMenu->addTitleItem("Кафедра: " + sn->department);
 			studDataMenu->run();
@@ -208,7 +208,7 @@ public:
 				break;
 			case 7:
 				ce->setLabel("Введите номер зачетной книжки. ");
-				sn->recordСardNumber = ce->setDataString(sn->recordСardNumber);
+				sn->recordCardNumber = ce->setDataString(sn->recordCardNumber);
 				break;
 			case 8:
 				ce->setLabel("Введите пол. ");

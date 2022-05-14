@@ -1,4 +1,4 @@
-п»ї#include <iostream>
+#include <iostream>
 #include "StringBuilderClass.h"
 #include "FileManagerClass.h"
 #include "ClassMenu.h"
@@ -13,18 +13,18 @@ void var57(StudentDBClass* sdb) {
     ClassMenu* varMenu = new ClassMenu();
     int resultSelectedItem = 1;
     const int exitItem = 0;
-    varMenu->addTitleItem("Р’С‹Р±РµСЂРёС‚Рµ РІС‹Р±РѕСЂРєСѓ: ");
+    varMenu->addTitleItem("Выберите выборку: ");
     for (auto item : sdb->DataBase) {
         string tmpString = "";
         tmpString = item.surName + " " + item.name + " " + item.middleName +  " " + std::to_string(item.countMarks5) + " " + std::to_string(item.countMarks4) + " " + std::to_string(item.countMarks3) + " " + item.birthDateString;
         varMenu->addTitleItem(tmpString);
     }
-    varMenu->addItem("Р’С‹С…РѕРґ"); //0
-    varMenu->addItem("Р°) 3;"); //1
-    varMenu->addItem("Р±) 3 Рё 4;"); //2
-    varMenu->addItem("РІ) 5;"); //3
-    varMenu->addItem("Рі) 3 Рё 5;"); //4
-    varMenu->addItem("Рґ) 4 Рё 5."); //5
+    varMenu->addItem("Выход"); //0
+    varMenu->addItem("а) 3;"); //1
+    varMenu->addItem("б) 3 и 4;"); //2
+    varMenu->addItem("в) 5;"); //3
+    varMenu->addItem("г) 3 и 5;"); //4
+    varMenu->addItem("д) 4 и 5."); //5
     StudentDBClass* sdb1 = new StudentDBClass();
     while (resultSelectedItem != exitItem) {
         varMenu->run();
@@ -97,26 +97,25 @@ List<string>::iterator mMin(List <string> *_lst) {
    
 }
 
-int main()
-{
+int main() {
     setlocale(LC_ALL, "Russian");
-    SetConsoleCP(1251); // Р’РІРѕРґ СЃ РєРѕРЅСЃРѕР»Рё РІ РєРѕРґРёСЂРѕРІРєРµ 1251
+    SetConsoleCP(1251); // Ввод с консоли в кодировке 1251
     SetConsoleOutputCP(1251);
-    std::cout << "РљСѓСЂСЃРѕРІР°СЏ СЂР°Р±РѕС‚Р° Р·Р°РїСѓС‰РµРЅР°...\n";
+    std::cout << "Курсовая работа запущена...\n";
     StudentDBClass* sdb = new StudentDBClass();    
     StudentDBClass* sdb1 = new StudentDBClass();
     StudentDBClass* sdb2 = new StudentDBClass();
     StudentDBClass* sdb3 = new StudentDBClass();
-    sdb->FileName = "DB.txt";
+    sdb->FileName = "C:/Users/1/CLionProjects/DB_of_students_var_28/DB.txt";    // Вместо этого вставить строку "DB.txt"
     sdb->loadDataFromFile();
 
     bool debug = false;
     if (debug) {
 
 
-        //РЎРѕСЂС‚РёСЂРѕРІРєР° СЃС‚СЂРѕРє
-        List <string> lst = { "РЇРЅР°" , "РђР»РёРЅР° Р РѕРіРѕРІР°", "РљСЃСЋС€Р°","Р”Р°РЅРёР»Р°", "РђР»РµРєСЃРµР№" ,"РђСЂРјРµРЅ" };
-        //РџСЂРѕСЃРјРѕС‚СЂРµС‚СЊ СЃРїРёСЃРѕРє
+        //Сортировка строк
+        List <string> lst = { "Яна" , "Алина Рогова", "Ксюша","Данила", "Алексей" ,"Армен" };
+        //Просмотреть список
         for (auto item : lst) {
             cout << item << endl;
         }
@@ -127,7 +126,7 @@ int main()
             sortedLst.push_front(*mMin(&lst));
             lst.erase(mMin(&lst));
         }
-        //РџСЂРѕСЃРјРѕС‚СЂРµС‚СЊ РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ СЃРїРёСЃРѕРє
+        //Просмотреть отсортированный список
         cout << endl << "------------" << endl;
         for (auto item : sortedLst) {
             cout << item<<endl;
@@ -138,21 +137,22 @@ int main()
     
     //cout << sdb->GetRecordCount() << endl;
     ClassMenu* mainMenu = new ClassMenu();
-    mainMenu->addTitleItem("Р“Р»Р°РІРЅРѕРµ РјРµРЅСЋ");
-    mainMenu->addItem("РџСЂРѕСЃРјРѕС‚СЂРµС‚СЊ СЃРїРёСЃРѕРє СЃС‚СѓРґРµС‚РѕРІ (СѓРґР°Р»РёС‚СЊ РёР»Рё РёР·РјРµРЅРёС‚СЊ РґР°РЅРЅС‹Рµ)"); //0
-    mainMenu->addItem("Р”РѕР±Р°РІРёС‚СЊ РґР°РЅРЅС‹Рµ Рѕ СЃС‚СѓРґРµРЅС‚Рµ РІ Р‘Р”"); //1
-    mainMenu->addItem("РЎРѕС…СЂР°РЅРёС‚СЊ Р‘Р” СЃС‚СѓРґРµРЅС‚РѕРІ РІ С„Р°Р№Р»"); //2
-    mainMenu->addItem("Р’С‹РїРѕР»РЅРёС‚СЊ РІР°СЂРёР°РЅС‚ 77"); //3
-    mainMenu->addItem("Р’С‹РїРѕР»РЅРёС‚СЊ РІР°СЂРёР°РЅС‚ 71"); //4
-    mainMenu->addItem("Р’С‹РїРѕР»РЅРёС‚СЊ РІР°СЂРёР°РЅС‚ 31"); //5
-    mainMenu->addItem("Р’С‹РїРѕР»РЅРёС‚СЊ РІР°СЂРёР°РЅС‚ 27"); //6
-    mainMenu->addItem("Р’С‹РїРѕР»РЅРёС‚СЊ РІР°СЂРёР°РЅС‚ 57"); //7
-    mainMenu->addItem("Р’С‹РїРѕР»РЅРёС‚СЊ РІР°СЂРёР°РЅС‚ 43"); //8
-    mainMenu->addItem("Р’С‹С…РѕРґ"); //9
+    mainMenu->addTitleItem("Главное меню");
+    mainMenu->addItem("Просмотреть список студентов (удалить или изменить данные)"); //0
+    mainMenu->addItem("Добавить данные о студенте в БД"); //1
+    mainMenu->addItem("Сохранить БД студентов в файл"); //2
+    mainMenu->addItem("Выполнить вариант 77"); //3
+    mainMenu->addItem("Выполнить вариант 71"); //4
+    mainMenu->addItem("Выполнить вариант 31"); //5
+    mainMenu->addItem("Выполнить вариант 27"); //6
+    mainMenu->addItem("Выполнить вариант 57"); //7
+    mainMenu->addItem("Выполнить вариант 43"); //8
+    mainMenu->addItem("Выполнить вариант 28"); //9
+    mainMenu->addItem("Выход"); //10
     int resultSelectedItem = 0;
-    int exitInt = 9;
+    int exitInt = 10;
     ClassMenu* studentsMenu = new ClassMenu();
-    studentsMenu->addTitleItem("РЎРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ");
+    studentsMenu->addTitleItem("Список студентов");
     int resultStudentSelectedItem = 1;
     const int exitIntStudentMenu = 0;
     StudentNode* sn;
@@ -175,14 +175,14 @@ int main()
             resultStudentSelectedItem = 1;
             while (resultStudentSelectedItem != exitIntStudentMenu) {
                 studentsMenu->eraseItem();
-                studentsMenu->addItem("Р’С‹С…РѕРґ");
-                studentsMenu->addItem("РЈРґР°Р»РёС‚СЊ РґР°РЅРЅС‹Рµ Рѕ СЃС‚СѓРґРµРЅС‚Рµ");
+                studentsMenu->addItem("Выход");
+                studentsMenu->addItem("Удалить данные о студенте");
                 /*sn = sdb->getInit();*/
                 for(int i=0;i<sdb->DataBase.size();i++)
-                { // РґРѕР±Р°РІРёС‚СЊ РїСѓРЅРєС‚С‹ РјРµРЅСЋ Р¤РРћ СЃС‚СѓРґРµРЅС‚РѕРІ
+                { // добавить пункты меню ФИО студентов
                     sn = &sdb->DataBase.at(i);
                     string tmpString = sn->surName + " " + sn->name + " " + sn->middleName + " " + sn->group;
-                    studentsMenu->addItem(tmpString); //РґРѕР±Р°РІРёС‚СЊ РІ РјРµРЅСЋ СЃС‚СѓРґРµРЅС‚РѕРІ
+                    studentsMenu->addItem(tmpString); //добавить в меню студентов
                     //sn = sn->next;
                 }
                 studentsMenu->run();
@@ -190,18 +190,18 @@ int main()
                 if (resultStudentSelectedItem == exitIntStudentMenu) {
                     break;
                 }
-                if (resultStudentSelectedItem == 1) //СѓРґР°Р»РµРЅРёРµ РґР°РЅРЅС‹С… Рѕ СЃС‚СѓРґРµРЅС‚Рµ
+                if (resultStudentSelectedItem == 1) //удаление данных о студенте
                 {
                     delStudentsMenu->eraseAll();
-                    delStudentsMenu->addTitleItem("Р’С‹Р±РµСЂРёС‚Рµ СЃС‚СѓРґРµРЅС‚Р° РґР»СЏ СѓРґР°Р»РµРЅРёСЏ РґР°РЅРЅС‹С…");
-                    delStudentsMenu->addItem("Р’С‹С…РѕРґ");
+                    delStudentsMenu->addTitleItem("Выберите студента для удаления данных");
+                    delStudentsMenu->addItem("Выход");
                     int resultDel = 1;
                     const int exitDel = 0;
                     for(int i=0; i<sdb->DataBase.size();i++)
-                    { // РґРѕР±Р°РІРёС‚СЊ РїСѓРЅРєС‚С‹ РјРµРЅСЋ Р¤РРћ СЃС‚СѓРґРµРЅС‚РѕРІ
+                    { // добавить пункты меню ФИО студентов
                         sn = &sdb->DataBase.at(i);
                         string tmpString = sn->surName + " " + sn->name + " " + sn->middleName + " " + sn->group;
-                        delStudentsMenu->addItem(tmpString); //РґРѕР±Р°РІРёС‚СЊ РІ РјРµРЅСЋ СЃС‚СѓРґРµРЅС‚РѕРІ
+                        delStudentsMenu->addItem(tmpString); //добавить в меню студентов
                         //sn = sn->next;
                     }
                     while (resultDel != exitDel) {
@@ -221,14 +221,14 @@ int main()
                 {
                     int num = resultStudentSelectedItem - 2; //!
                     sn = &sdb->DataBase.at(num);   
-                    string oldRecordРЎardNumber = "";
-                    oldRecordРЎardNumber = sn->recordРЎardNumber;
+                    string oldRecordCardNumber = "";
+                    oldRecordCardNumber = sn->recordCardNumber;
                     st->editStudent(sn);
 
-                    if (sdb->getSameRecordРЎardNumber(sn->recordРЎardNumber)>1)
+                    if (sdb->getSameRecordCardNumber(sn->recordCardNumber)>1)
                     {
-                        sn->recordРЎardNumber = oldRecordРЎardNumber;
-                        cout << "РћС€РёР±РєР° РІРІРµРґРµРЅ РЅРѕРјРµСЂ Р·Р°С‡РµС‚РЅРѕР№ РєРЅРёР¶РєРё РєРѕС‚РѕСЂС‹Р№ СѓР¶Рµ РµСЃС‚СЊ РІ Р‘Р”";
+                        sn->recordCardNumber = oldRecordCardNumber;
+                        cout << "Ошибка введен номер зачетной книжки который уже есть в БД";
                         _getch();
                     }
                 }
@@ -241,9 +241,9 @@ int main()
                 for (int j = 0; j < 10; j++)
                     sn->examsRecordsData[i][j].isEmpty = true;
             st->editStudent(sn);
-            if (sdb->getSameRecordРЎardNumber(sn->recordРЎardNumber)>=1)
+            if (sdb->getSameRecordCardNumber(sn->recordCardNumber)>=1)
             {
-                cout << "РћС€РёР±РєР° РІРІРµРґРµРЅ РЅРѕРјРµСЂ Р·Р°С‡РµС‚РЅРѕР№ РєРЅРёР¶РєРё РєРѕС‚РѕСЂС‹Р№ СѓР¶Рµ РµСЃС‚СЊ РІ Р‘Р”";
+                cout << "Ошибка введен номер зачетной книжки который уже есть в БД";
                 _getch();
             }
             else
@@ -251,24 +251,24 @@ int main()
                 sdb->DataBase.push_front(*sn);
             }
             break;        
-        case 2: //РЎРѕС…СЂР°РЅРёС‚СЊ РІ С„Р°Р№Р»
+        case 2: //Сохранить в файл
             sdb->saveDataToFile(sdb->FileName);
             //sdb->saveDataToFile("d:\\db1.txt");
             break;
-        case 3: //Р’Р°СЂРёР°РЅС‚ 77
-            //ce->setLabel("Р’РІРµРґРёС‚Рµ РЅР°С‡Р°Р»СЊРЅС‹Р№ РіРѕРґ СЂРѕР¶РґРµРЅРёСЏ РґР»СЏ РёРЅС‚РµСЂРІР°Р»Р° РІС‹Р±РѕСЂРєРё. ");
+        case 3: //Вариант 77
+            //ce->setLabel("Введите начальный год рождения для интервала выборки. ");
             //startYear = ce->setDataInt(1900, 2021);
-            //ce->setLabel("Р’РІРµРґРёС‚Рµ rjytxysq РіРѕРґ СЂРѕР¶РґРµРЅРёСЏ РґР»СЏ РёРЅС‚РµСЂРІР°Р»Р° РІС‹Р±РѕСЂРєРё. ");
+            //ce->setLabel("Введите rjytxysq год рождения для интервала выборки. ");
             //endYear = ce->setDataInt(1900, 2021);
             startYear = 1900;
             endYear = 2000;
 
             system("cls");
-            cout << "РџРѕР»РЅС‹Р№ СЃРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ" << endl;
-            sdb->updateAvrMarks();  //РџРµСЂРµСЂР°СЃС‡РёС‚Р°С‚СЊ РїРѕР»Рµ СЃСЂРµРґРЅРёР№ Р±Р°Р»Р» 
+            cout << "Полный список студентов" << endl;
+            sdb->updateAvrMarks();  //Перерасчитать поле средний балл 
             sdb->printAllSurName_Name_MName_bYaear_avrMarks();
             sdb->sortByAvrMarks();
-            cout << "РћС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ СЃРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ" << endl;
+            cout << "Отсортированный список студентов" << endl;
             sdb->printAllSurName_Name_MName_bYaear_avrMarks();
             sdb1->DataBase.clear();
             sdb2->DataBase.clear();
@@ -281,23 +281,23 @@ int main()
                 else
                     sdb2->DataBase.push_front(*sn);
             }
-            cout << "РЎРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ С‡Р°СЃС‚СЊ 1 (РіРѕРґ СЂРѕР¶РґРµРЅРёСЏ РѕС‚ " + std::to_string(startYear) + " РґРѕ " + std::to_string(endYear) + " ): " << endl;
+            cout << "Список студентов часть 1 (год рождения от " + std::to_string(startYear) + " до " + std::to_string(endYear) + " ): " << endl;
             sdb1->printAllSurName_Name_MName_bYaear_avrMarks();
-            cout << "РЎРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ С‡Р°СЃС‚СЊ 2 (РіРѕРґ СЂРѕР¶РґРµРЅРёСЏ РќР• РѕС‚ " + std::to_string(startYear) + " РґРѕ " + std::to_string(endYear) + " ): " << endl;
+            cout << "Список студентов часть 2 (год рождения НЕ от " + std::to_string(startYear) + " до " + std::to_string(endYear) + " ): " << endl;
             sdb2->printAllSurName_Name_MName_bYaear_avrMarks();
             _getch();
             resultSelectedItem = -1;
             break;
-        case 4: //Р’Р°СЂРёР°РЅС‚ 71
+        case 4: //Вариант 71
 
             startYear = 1900;
             endYear = 2005;
             system("cls");
-            cout << "РџРѕР»РЅС‹Р№ СЃРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ" << endl;
-            sdb->updateMarks45(); //50% С…РѕСЂРѕС€РёС… Рё РѕС‚Р»РёС‡РЅС‹С… РѕС†РµРЅРѕРєРє
+            cout << "Полный список студентов" << endl;
+            sdb->updateMarks45(); //50% хороших и отличных оценокк
             sdb->printAllSurName_Name_MName_bYaear_Marks45();
             sdb->sortByMarks45();
-            cout << "\nРћС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ СЃРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ" << endl;
+            cout << "\nОтсортированный список студентов" << endl;
             sdb->printAllSurName_Name_MName_bYaear_Marks45();
             sdb1->DataBase.clear();
             sdb2->DataBase.clear();
@@ -312,16 +312,16 @@ int main()
                         sdb2->DataBase.push_front(*sn);
                 }
             }
-            cout << "\nРЎРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ 4 Рё 5 > 50%: " << endl;
+            cout << "\nСписок студентов 4 и 5 > 50%: " << endl;
             sdb1->printAllSurName_Name_MName_bYaear_Marks45();
-            cout << "\nРЎРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ 4 Рё 5 < 50%: " << endl;
+            cout << "\nСписок студентов 4 и 5 < 50%: " << endl;
             sdb2->printAllSurName_Name_MName_bYaear_Marks45();            
-            cout << "\nРЎРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ 4 Рё 5 > 50%: РґРІР° Р»СѓС‡С€РёС… " << endl;
+            cout << "\nСписок студентов 4 и 5 > 50%: два лучших " << endl;
             sdb3->DataBase.push_front(*sdb1->getMinMarks45());
             sdb1->DataBase.erase(sdb1->getMinMarks45());
             sdb3->DataBase.push_front(*sdb1->getMinMarks45());
             sdb3->printAllSurName_Name_MName_bYaear_Marks45();
-            cout << "\nРЎРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ 4 Рё 5 < 50%: РґРІР° С…СѓРґС€РёС…" << endl;
+            cout << "\nСписок студентов 4 и 5 < 50%: два худших" << endl;
             sdb3->DataBase.clear();
             sdb3->DataBase.push_front(*sdb2->getMaxMarks45());
             sdb1->DataBase.erase(sdb2->getMaxMarks45());
@@ -331,41 +331,41 @@ int main()
             resultSelectedItem = -1;
             break;
         case 5: 
-            //Р’Р°СЂРёР°РЅС‚ 31. Р Р°СЃРїРµС‡Р°С‚Р°С‚СЊ РІСЃРµС… СЃС‚СѓРґРµРЅС‚РѕРІ РІ РїРѕСЂСЏРґРєРµ СѓР±С‹РІР°РЅРёСЏ 5 РІ РѕРґРЅРѕРј, 
-            //    РЅРµСЃРєРѕР»СЊРєРёС… РёР»Рё РІСЃРµС… СЃРµРјРµСЃС‚СЂР°С…, РєРѕС‚РѕСЂС‹Рµ РІС‹Р±РёСЂР°СЋС‚СЃСЏ РїРѕ Р¶РµР»Р°РЅРёСЋ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ.
-            //    РџСЂРµРґСѓСЃРјРѕС‚СЂРµС‚СЊ СЂР°СЃРїРµС‡Р°С‚С‹РІР°С‚СЊ Р»РёС† РѕРїСЂРµРґРµР»РµРЅРЅРѕРіРѕ РїРѕР»Р°.
+            //Вариант 31. Распечатать всех студентов в порядке убывания 5 в одном, 
+            //    нескольких или всех семестрах, которые выбираются по желанию пользователя.
+            //    Предусмотреть распечатывать лиц определенного пола.
             system("cls");
             sdb->getRangeSem();
-            cout << "РџРѕР»РЅС‹Р№ СЃРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ" << endl;
+            cout << "Полный список студентов" << endl;
             sdb->updateCountMarks5();
             sdb->printAllSurName_Name_MName_bYaear_countMarks5();
             sdb->sortByCountMarks5();
-            cout << "\nРћС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ СЃРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ" << endl;
+            cout << "\nОтсортированный список студентов" << endl;
             sdb->printAllSurName_Name_MName_bYaear_countMarks5();
             _getch();
             break;
         case 6:
-            //Р’Р°СЂРёР°РЅС‚ 27. РћС‚СЃРѕСЂС‚РёСЂРѕРІР°С‚СЊ РіСЂСѓРїРїСѓ РїРѕ СѓСЃРїРµРІР°РµРјРѕСЃС‚Рё РІ РєР°Р¶РґРѕР№ СЃРµСЃСЃРёРё 
-            // РёР»Рё РІРІРѕРґРёРјРѕР№ РїРѕ С‚СЂРµР±РѕРІР°РЅРёСЋ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+            //Вариант 27. Отсортировать группу по успеваемости в каждой сессии 
+            // или вводимой по требованию пользователя
             system("cls");
             sdb->getRangeSem();
-            cout << "РџРѕР»РЅС‹Р№ СЃРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ" << endl;
-            sdb->updateAvrMarksRangeSem();  //РџРµСЂРµСЂР°СЃС‡РёС‚Р°С‚СЊ РїРѕР»Рµ СЃСЂРµРґРЅРёР№ Р±Р°Р»Р» 
+            cout << "Полный список студентов" << endl;
+            sdb->updateAvrMarksRangeSem();  //Перерасчитать поле средний балл 
             sdb->printAllSurName_Name_MName_bYaear_avrMarks();
             sdb->sortByAvrMarks();
-            cout << "\nРћС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ СЃРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ" << endl;
+            cout << "\nОтсортированный список студентов" << endl;
             sdb->printAllSurName_Name_MName_bYaear_avrMarks();
             _getch();
             break;
         case 7:
-            //Р’Р°СЂРёР°РЅС‚ 57. Р Р°СЃРїРµС‡Р°С‚Р°С‚СЊ РІСЃРµС… СЃС‚СѓРґРµРЅС‚РѕРІ, Сѓ РєРѕС‚РѕСЂС‹С… Р·Р° РІСЃРµ РІСЂРµРјСЏ РѕР±СѓС‡РµРЅРёСЏ РЅРµ Р±РѕР»РµРµ 25 % РѕС†РµРЅРѕРє 
-            //Р°) 3 Р±) 3 Рё 4 РІ) 5 Рі) 3 Рё 5 Рґ) 4 Рё 5. 
-            //Р’Р°СЂРёР°РЅС‚С‹ Р° - Рґ РІС‹Р±РёСЂР°СЋС‚СЃСЏ РїРѕ Р¶РµР»Р°РЅРёСЋ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ.
-            //РС… РјРѕР¶РЅРѕ РІС‹Р±СЂР°С‚СЊ РєР°Рє 1, С‚Р°Рє Рё РЅРµСЃРєРѕР»СЊРєРѕ РёР»Рё РІСЃРµ РІР°СЂРёР°РЅС‚С‹, 
-            //СЃ СѓРєР°Р·Р°РЅРёРµРј РёРЅС‚РµСЂРІР°Р»Р° РіРѕРґР° СЂРѕР¶РґРµРЅРёСЏ...
-            ce->setLabel("Р’РІРµРґРёС‚Рµ РЅР°С‡Р°Р»СЊРЅС‹Р№ РіРѕРґ СЂРѕР¶РґРµРЅРёСЏ РґР»СЏ РёРЅС‚РµСЂРІР°Р»Р° РІС‹Р±РѕСЂРєРё. ");
+            //Вариант 57. Распечатать всех студентов, у которых за все время обучения не более 25 % оценок 
+            //а) 3 б) 3 и 4 в) 5 г) 3 и 5 д) 4 и 5. 
+            //Варианты а - д выбираются по желанию пользователя.
+            //Их можно выбрать как 1, так и несколько или все варианты, 
+            //с указанием интервала года рождения...
+            ce->setLabel("Введите начальный год рождения для интервала выборки. ");
             startYear = ce->setDataInt(1900, 2021);
-            ce->setLabel("Р’РІРµРґРёС‚Рµ РєРѕРЅРµС‡РЅС‹Р№ РіРѕРґ СЂРѕР¶РґРµРЅРёСЏ РґР»СЏ РёРЅС‚РµСЂРІР°Р»Р° РІС‹Р±РѕСЂРєРё. ");
+            ce->setLabel("Введите конечный год рождения для интервала выборки. ");
             endYear = ce->setDataInt(1900, 2021);
             //startYear = 1900;
             //endYear = 2005;
@@ -376,23 +376,23 @@ int main()
                 if (year >= startYear and year <= endYear)
                     sdb1->DataBase.push_front(*sn);
             }
-            sdb1->updateCountMarks543();  //РџРµСЂРµСЂР°СЃС‡РёС‚Р°С‚СЊ РїРѕР»СЏ 
+            sdb1->updateCountMarks543();  //Перерасчитать поля 
             var57(sdb1);
             _getch();
             break;
         case 8:
-            //Р’Р°СЂРёР°РЅС‚ 43. Р Р°Р·Р±РёС‚СЊ РіСЂСѓРїРїСѓ РЅР° 2 С‡Р°СЃС‚Рё, СЃ РїРѕРёСЃРєРѕРј СЃСЂРµРґРё Р»РёС† РѕРїСЂРµРґРµР»РµРЅРЅРѕРіРѕ РїРѕР»Р°:
-            //1) РїРѕ Р°Р»С„Р°РІРёС‚Сѓ РѕС‚ Рђ РґРѕ Рџ;
-            //2) РїРѕ Р°Р»С„Р°РІРёС‚Сѓ РѕС‚ Р  РґРѕ РЇ.
-            //РљР°Р¶РґСѓСЋ С‡Р°СЃС‚СЊ РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°С‚СЊ РІ РїРѕСЂСЏРґРєРµ СѓРІРµР»РёС‡РµРЅРёСЏ СЃСЂРµРґРЅРµРіРѕ Р±Р°Р»Р° Р·Р° РІСЃРµ РІСЂРµРјСЏ
+            //Вариант 43. Разбить группу на 2 части, с поиском среди лиц определенного пола:
+            //1) по алфавиту от А до П;
+            //2) по алфавиту от Р до Я.
+            //Каждую часть отсортировать в порядке увеличения среднего бала за все время
             system("cls");
-            cout << "РџРѕР»РЅС‹Р№ СЃРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ" << endl;
-            sdb->updateAvrMarks();  //РџРµСЂРµСЂР°СЃС‡РёС‚Р°С‚СЊ РїРѕР»Рµ СЃСЂРµРґРЅРёР№ Р±Р°Р»Р» 
+            cout << "Полный список студентов" << endl;
+            sdb->updateAvrMarks();  //Перерасчитать поле средний балл 
             sdb->printAllSurName_Name_MName_bYaear_avrMarks();
             sdb->sortByAvrMarks();
-            cout << "\nРћС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ СЃРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ" << endl;
+            cout << "\nОтсортированный список студентов" << endl;
             sdb->printAllSurName_Name_MName_bYaear_avrMarks();
-            firstPartString = "РђР‘Р’Р“Р”Р•Р–Р—РРљР›РњРќРћРџР°Р±РІРіРґРµР¶Р·РёРєР»РјРЅРѕРї";
+            firstPartString = "АБВГДЕЖЗИКЛМНОПабвгдежзиклмноп";
             sdb1->DataBase.clear();
             sdb2->DataBase.clear();
             for (auto item : sdb->DataBase) {
@@ -401,7 +401,7 @@ int main()
                         sdb1->DataBase.push_front(item);
                     }
             }
-            cout << "\nCРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ РїРѕ Р°Р»С„Р°РІРёС‚Сѓ РѕС‚ Рђ РґРѕ Рџ" << endl;
+            cout << "\nCписок студентов по алфавиту от А до П" << endl;
             sdb1->printAllSurName_Name_MName_bYaear_avrMarks();     
             for (auto item : sdb->DataBase){
                 bool isExist = false;
@@ -412,11 +412,18 @@ int main()
                     sdb2->DataBase.push_front(item);
             }
 
-            cout << "\nCРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ РїРѕ Р°Р»С„Р°РІРёС‚Сѓ РѕС‚ Р  РґРѕ РЇ" << endl;
+            cout << "\nCписок студентов по алфавиту от Р до Я" << endl;
             sdb2->printAllSurName_Name_MName_bYaear_avrMarks();
             _getch();
             break;
         case 9:
+            /*
+                Отсортировать группу по убыванию успеваемости любой
+                одной или нескольких сессий (в том числе, возможно, и всех), вводимых по
+                желанию пользователя. С выбором пола человека
+             */
+            break;
+        case 10:
             resultSelectedItem = exitInt;
             break;
         default:
