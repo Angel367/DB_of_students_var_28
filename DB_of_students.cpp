@@ -255,17 +255,17 @@ int main() {
             sdb->saveDataToFile(sdb->FileName);
             //sdb->saveDataToFile("d:\\db1.txt");
             break;
-        case 3: //Вариант 77
+        case 3: //Вариант 77    // Многое можно отсюда подчерпнуть
             //ce->setLabel("Введите начальный год рождения для интервала выборки. ");
             //startYear = ce->setDataInt(1900, 2021);
-            //ce->setLabel("Введите rjytxysq год рождения для интервала выборки. ");
+            //ce->setLabel("Введите конечный год рождения для интервала выборки. ");
             //endYear = ce->setDataInt(1900, 2021);
             startYear = 1900;
             endYear = 2000;
 
             system("cls");
             cout << "Полный список студентов" << endl;
-            sdb->updateAvrMarks();  //Перерасчитать поле средний балл 
+            sdb->updateAvrMarks();  //Перерасчитать поле средний балл
             sdb->printAllSurName_Name_MName_bYaear_avrMarks();
             sdb->sortByAvrMarks();
             cout << "Отсортированный список студентов" << endl;
@@ -350,7 +350,7 @@ int main() {
             system("cls");
             sdb->getRangeSem();
             cout << "Полный список студентов" << endl;
-            sdb->updateAvrMarksRangeSem();  //Перерасчитать поле средний балл 
+            sdb->updateAvrMarksRangeSem();  // Пepepaccчитaть поле средний балл
             sdb->printAllSurName_Name_MName_bYaear_avrMarks();
             sdb->sortByAvrMarks();
             cout << "\nОтсортированный список студентов" << endl;
@@ -421,7 +421,22 @@ int main() {
                 Отсортировать группу по убыванию успеваемости любой
                 одной или нескольких сессий (в том числе, возможно, и всех), вводимых по
                 желанию пользователя. С выбором пола человека
+                List - двусвязный список, DataBase - содержит в себе List объектов StudentNode, который в свою очередь
+                является структурой, содержащей записи о студенте (в нашем случае их 8).
+                Фактически, задача сводится к сортировке списка (список при этом должен содержать только заданную группу)
+                При этом необходимо учитывать отметки (уже есть в 27 и 77 вариантах), и несколько сессий (уже есть в тех же вариантах).
+                В целом звучит реально.
              */
+            system("cls");
+            sdb->getRangeSem();
+            cout << "Полный список студентов" << endl;
+
+            sdb->updateAvrMarksRangeSem();  // Пepepaccчитaть поле средний балл
+            sdb->printAllSurName_Name_MName_bYaear_avrMarks();
+            sdb->sortByAvrMarks();
+            cout << "\nОтсортированный список студентов" << endl;
+            sdb->printAllSurName_Name_MName_bYaear_avrMarks();
+            _getch();
             break;
         case 10:
             resultSelectedItem = exitInt;

@@ -385,10 +385,11 @@ public:
 		for(int i=1; i<=9;i++)
 			semMenu->addItem("Семестр " + std::to_string(i));
 		while (resultSelectedItem != exitItem) {
+            cout << "resultSelectedItem: " << resultSelectedItem << endl;   // Моё
 			semMenu->eraseTitle();
 			semMenu->addTitleItem("Выберите семестр для добавления в выборку: ");
 			string tmpString = "";
-			if (rangeSem.size() >0)
+			if (rangeSem.size() > 0)
 				for (auto item : rangeSem) {
 					tmpString = tmpString + " " + std::to_string(item);
 				}
