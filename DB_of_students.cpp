@@ -133,9 +133,6 @@ int main() {
         }
     }
     else {
-
-    
-    //cout << sdb->GetRecordCount() << endl;
     ClassMenu* mainMenu = new ClassMenu();
     mainMenu->addTitleItem("Главное меню");
     mainMenu->addItem("Просмотреть список студентов (удалить или изменить данные)"); //0
@@ -416,28 +413,27 @@ int main() {
             sdb2->printAllSurName_Name_MName_bYaear_avrMarks();
             _getch();
             break;
-        case 9:
+        case 9: {   // Вариант 28
             /*
                 Отсортировать группу по убыванию успеваемости любой
                 одной или нескольких сессий (в том числе, возможно, и всех), вводимых по
                 желанию пользователя. С выбором пола человека
-                List - двусвязный список, DataBase - содержит в себе List объектов StudentNode, который в свою очередь
-                является структурой, содержащей записи о студенте (в нашем случае их 8).
-                Фактически, задача сводится к сортировке списка (список при этом должен содержать только заданную группу)
-                При этом необходимо учитывать отметки (уже есть в 27 и 77 вариантах), и несколько сессий (уже есть в тех же вариантах).
-                В целом звучит реально.
              */
             system("cls");
             sdb->getRangeSem();
-            cout << "Полный список студентов" << endl;
-
             sdb->updateAvrMarksRangeSem();  // Пepepaccчитaть поле средний балл
-            sdb->printAllSurName_Name_MName_bYaear_avrMarks();
+            cout << "Введите пол (M - Мужчины, F - Женщины, A - Все): ";
+            char gender = '0';
+            while (gender != 'M' and gender != 'F' and gender != 'A') {
+                cin >> gender;
+            }
+            sdb->printAllSurName_Name_MName_bYaear_avrMarks_byGender(gender);
             sdb->sortByAvrMarks();
-            cout << "\nОтсортированный список студентов" << endl;
-            sdb->printAllSurName_Name_MName_bYaear_avrMarks();
+            cout << "\nПосле сортировки: " << endl;
+            sdb->printAllSurName_Name_MName_bYaear_avrMarks_byGender(gender);
             _getch();
             break;
+        }
         case 10:
             resultSelectedItem = exitInt;
             break;

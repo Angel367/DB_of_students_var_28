@@ -465,7 +465,7 @@ public:
 					sum = sum + sn->examsRecordsData[i-1][j].mark;
 					count++;
 				}
-		int avr = 0;
+		double avr = 0;
 		if (count > 0)
 			avr = sum / count;
 		return avr;

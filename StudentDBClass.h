@@ -264,6 +264,35 @@ public:
 		}
 		delete sb;
 	}
+    void printAllSurName_Name_MName_bYaear_avrMarks_byGender(char gender = '0') {
+        if (gender == '0') {
+            cout << "Введите пол (M - Мужчины, F - Женщины, A - Все): ";
+            while (gender != 'M' and gender != 'F' and gender != 'A') {
+                gender = _getch();
+            }
+        }
+        StringBuilderClass* sb = new StringBuilderClass();
+        switch (gender) {
+            case 'A':
+                cout << "Полный список студентов всех полов" << endl;
+                for(auto item:DataBase)
+                    cout << item.surName + " " + item.name + " " + item.middleName + " " + sb->split(item.birthDateString,'.',2) + " " + std::to_string(item.avrMarks) << endl;
+                break;
+            case 'M':
+                cout << "Полный список студентов мужчин" << endl;
+                for(auto item:DataBase)
+                    if (item.sex)
+                        cout << item.surName + " " + item.name + " " + item.middleName + " " + sb->split(item.birthDateString,'.',2) + " " + std::to_string(item.avrMarks) << endl;
+                break;
+            case 'F':
+                cout << "Полный список студентов женщин" << endl;
+                for(auto item:DataBase)
+                    if (!item.sex)
+                        cout << item.surName + " " + item.name + " " + item.middleName + " " + sb->split(item.birthDateString,'.',2) + " " + std::to_string(item.avrMarks) << endl;
+                break;
+        }
+        delete sb;
+    }
 	void printAllSurName_Name_MName_bYaear_countMarks5() {
 		StringBuilderClass* sb = new StringBuilderClass();
 		for (auto item : DataBase) {
